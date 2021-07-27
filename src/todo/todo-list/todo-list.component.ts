@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoFacade } from '../todo.facade';
 
 @Component({
   selector: 'app-todo-list',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private facade: TodoFacade
+  ) {}
 
   ngOnInit() {}
 }
