@@ -28,6 +28,6 @@ export const todosReducer = createReducer(
   )
 );
 
-export const reducers: ActionReducerMap<TodoModuleState> = {
+export const todosReducers: ActionReducerMap<TodoModuleState> = {
   todos: todosReducer
 };
