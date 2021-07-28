@@ -19,6 +19,6 @@ export class TodoStateAdapter {
   };
 
   public action: StateAction<TodoStateType> = (action, ...actionArgs) => {
-    this.state.action(action, actionArgs);
+    this.state.action(action, ...actionArgs);
   };
 }

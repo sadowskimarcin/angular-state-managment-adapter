@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TodoStateAdapter } from './todo-state.adapter';
-import * as Actions from '../state-manager/todo.actions';
-import * as Selectors from '../state-manager/todo.selectors';
+import * as Actions from './state-manager/todo.actions';
+import * as Selectors from './state-manager/todo.selectors';
 import { TodoService } from './todo.service';
 
 @Injectable()
