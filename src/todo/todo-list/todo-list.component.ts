@@ -7,9 +7,11 @@ import { TodoFacade } from '../todo.facade';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  constructor(
-    private facade: TodoFacade
-  ) {}
+  public todos$ = this.facade.todos$;
 
-  ngOnInit() {}
+  constructor(private facade: TodoFacade) {}
+
+  ngOnInit() {
+    this.facade.loadTodos();
+  }
 }

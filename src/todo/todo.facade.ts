@@ -15,7 +15,7 @@ export class TodoFacade {
 
   public loadTodos(): void {
     this.service.getTodos().subscribe(todos => {
-      this.stateAdapter.action(Actions.setTodos(todos));
+      this.stateAdapter.action(Actions.setTodos, todos);
     });
   }
 }
