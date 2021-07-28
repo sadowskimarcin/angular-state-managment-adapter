@@ -37,4 +37,8 @@ export class TodoListComponent implements OnInit {
 
     nameControl.setValue('');
   }
+
+  public remove(todoId: number): void {
+    this.facade.removeTodo(todoId);
+  }
 }

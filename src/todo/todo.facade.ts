@@ -40,4 +40,10 @@ export class TodoFacade {
         this.stateAdapter.action(Actions.addTodo, todo);
       });
   }
+
+  public removeTodo(todoId: number): void {
+    this.service.removeTodo(todoId).subscribe(() => {
+      this.stateAdapter.action(Actions.removeTodo, todoId);
+    });
+  }
 }

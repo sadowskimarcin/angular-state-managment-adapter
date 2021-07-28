@@ -4,6 +4,7 @@
 <ul>
   <li *ngFor="let todo of todosNotCompleted$ | async">
     <input type="checkbox" (click)="completeTodo(todo.id)">
+    <button (click)="remove(todo.id)">X</button>
     {{todo.title}}
   </li>
 </ul>
@@ -12,11 +13,12 @@
 <ul>
   <li *ngFor="let todo of todosCompleted$ | async">
     <input type="checkbox" (click)="unCompleteTodo(todo.id)" checked>
+    <button (click)="remove(todo.id)">X</button>
     {{todo.title}}
   </li>
 </ul>
 
 <br>
-<form>
-  Add new todo <input> <button type="submit">submit</button>
+<form [formGroup]="form" (ngSubmit)="addTodo()">
+  Add new todo <input formControlName="title"> <button type="submit">submit</button>
 </form>

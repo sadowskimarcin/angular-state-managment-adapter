@@ -21,17 +21,23 @@ export const setTodoIsCompleted = (
       }
       return todo;
     })
-  })
-}
+  });
+};
 
 export const addTodo = (
   state: StateManager<TodoStateType>,
   todo: TodoModel
 ): void => {
   state.updateState({
-    todos: [
-      ...state.stateSnapshot.todos,
-      todo
-    ]
-  })
-}
+    todos: [...state.stateSnapshot.todos, todo]
+  });
+};
+
+export const removeTodo = (
+  state: StateManager<TodoStateType>,
+  todoId: number
+): void => {
+  state.updateState({
+    todos: state.stateSnapshot.todos.filter(todo => todo.id !== todoId)
+  });
+};
