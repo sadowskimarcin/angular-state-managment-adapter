@@ -6,14 +6,9 @@ import { TodoStateAdapter } from './todo-state.adapter';
 import { TodoState } from './state-manager/todo.state';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [TodoListComponent],
-  providers: [
-    TodoFacade,
-    TodoStateAdapter,
-    TodoState
-  ]
+  providers: [TodoFacade, TodoStateAdapter, TodoState],
+  exports: [TodoListComponent]
 })
-export class TodoModule { }
+export class TodoModule {}
