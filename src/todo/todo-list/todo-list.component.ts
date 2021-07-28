@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TodoFacade } from '../todo.facade';
+import { TodoFacadeSm } from '../todo.facade-sm';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,7 +12,7 @@ export class TodoListComponent implements OnInit {
   public todosNotCompleted$ = this.facade.todosNotCompleted$;
   public form: FormGroup;
 
-  constructor(private facade: TodoFacade, private formBuilder: FormBuilder) {
+  constructor(private facade: TodoFacadeSm, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       title: ['', Validators.required]
     });

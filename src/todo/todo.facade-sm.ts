@@ -5,7 +5,7 @@ import * as Selectors from './state-manager/todo.selectors';
 import { TodoService } from './todo.service';
 
 @Injectable()
-export class TodoFacade {
+export class TodoFacadeSm {
   public todosAll$ = this.stateAdapter.select(Selectors.selectTodos$());
   public todosCompleted$ = this.stateAdapter.select(
     Selectors.selectTodosCompleted$()
