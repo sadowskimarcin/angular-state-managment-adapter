@@ -1,10 +1,7 @@
 import { ActionReducerMap, createReducer, MetaReducer, on } from '@ngrx/store';
-import * as TodoActions from 'Modules/todo/actions';
-import { todosAdapter, TodoState } from 'Modules/todo/states';
-
-export const reducers: ActionReducerMap<TodoModuleState> = {
-  todos: todosReducer
-};
+import { TodoModuleState } from './todo-state.typings';
+import * as TodoActions from './todo.actions';
+import { todosAdapter, TodoState } from './todo.state';
 
 export const metaReducers: MetaReducer<TodoModuleState>[] = [];
 
@@ -30,3 +27,7 @@ export const todosReducer = createReducer(
     todosAdapter.addMany(todos, state)
   )
 );
+
+export const reducers: ActionReducerMap<TodoModuleState> = {
+  todos: todosReducer
+};
