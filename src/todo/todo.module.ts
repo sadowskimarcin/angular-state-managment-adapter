@@ -4,11 +4,13 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoFacade } from './todo.facade';
 import { TodoStateAdapter } from './todo-state.adapter';
 import { TodoState } from './state-manager/todo.state';
+import { TodoService } from './todo.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   declarations: [TodoListComponent],
-  providers: [TodoFacade, TodoStateAdapter, TodoState],
+  providers: [TodoFacade, TodoStateAdapter, TodoState, TodoService],
   exports: [TodoListComponent]
 })
 export class TodoModule {}
