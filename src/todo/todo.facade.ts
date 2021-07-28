@@ -6,7 +6,13 @@ import { TodoService } from './todo.service';
 
 @Injectable()
 export class TodoFacade {
-  public todos$ = this.stateAdapter.select(Selectors.selectTodos$());
+  public todosAll$ = this.stateAdapter.select(Selectors.selectTodos$());
+  public todosCompleted$ = this.stateAdapter.select(
+    Selectors.selectTodosCompleted$()
+  );
+  public todosNotCompleted$ = this.stateAdapter.select(
+    Selectors.selectTodosNotCompleted$()
+  );
 
   constructor(
     private stateAdapter: TodoStateAdapter,
@@ -17,5 +23,21 @@ export class TodoFacade {
     this.service.getTodos().subscribe(todos => {
       this.stateAdapter.action(Actions.setTodos, todos);
     });
+  }
+
+  public setTodoIsCompleted(todoId: number, isCompleted: boolean): void {
+    this.stateAdapter.action(Actions.setTodoIsCompleted, todoId, isCompleted);
+  }
+
+  public addTodo(title: string): void {
+    this.service
+      .addTodo({
+        id: null,
+        title,
+        isCompleted: false
+      })
+      .subscribe(todo => {
+        this.stateAdapter.action(Actions.addTodo, todo);
+      });
   }
 }

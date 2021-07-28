@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoFacade } from '../todo.facade';
 
 @Component({
@@ -7,11 +8,33 @@ import { TodoFacade } from '../todo.facade';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  public todos$ = this.facade.todos$;
+  public todosCompleted$ = this.facade.todosCompleted$;
+  public todosNotCompleted$ = this.facade.todosNotCompleted$;
+  public form: FormGroup;
 
-  constructor(private facade: TodoFacade) {}
+  constructor(private facade: TodoFacade, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      title: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
     this.facade.loadTodos();
+  }
+
+  public completeTodo(todoId: number): void {
+    this.facade.setTodoIsCompleted(todoId, true);
+  }
+
+  public unCompleteTodo(todoId: number): void {
+    this.facade.setTodoIsCompleted(todoId, false);
+  }
+
+  public addTodo(): void {
+    const nameControl = this.form.get('title');
+
+    this.facade.addTodo(nameControl.value);
+
+    nameControl.setValue('');
   }
 }

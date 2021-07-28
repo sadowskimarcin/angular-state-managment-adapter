@@ -8,3 +8,30 @@ export const setTodos = (
 ): void => {
   state.updateState({ todos });
 };
+
+export const setTodoIsCompleted = (
+  state: StateManager<TodoStateType>,
+  todoId: number,
+  isCompleted: boolean
+): void => {
+  state.updateState({
+    todos: state.stateSnapshot.todos.map(todo => {
+      if (todo.id === todoId) {
+        todo.isCompleted = isCompleted;
+      }
+      return todo;
+    })
+  })
+}
+
+export const addTodo = (
+  state: StateManager<TodoStateType>,
+  todo: TodoModel
+): void => {
+  state.updateState({
+    todos: [
+      ...state.stateSnapshot.todos,
+      todo
+    ]
+  })
+}

@@ -1,7 +1,22 @@
 <h1>Todo list</h1>
 
+<p>Todo</p>
 <ul>
-  <li *ngFor="let todo of todos$ | async">
+  <li *ngFor="let todo of todosNotCompleted$ | async">
+    <input type="checkbox" (click)="completeTodo(todo.id)">
     {{todo.title}}
   </li>
 </ul>
+
+<p>Done</p>
+<ul>
+  <li *ngFor="let todo of todosCompleted$ | async">
+    <input type="checkbox" (click)="unCompleteTodo(todo.id)" checked>
+    {{todo.title}}
+  </li>
+</ul>
+
+<br>
+<form>
+  Add new todo <input> <button type="submit">submit</button>
+</form>
