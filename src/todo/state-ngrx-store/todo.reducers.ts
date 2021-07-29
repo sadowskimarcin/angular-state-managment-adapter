@@ -20,12 +20,12 @@ export const todosReducer = createReducer(
   on(TodoActions.updateTodo, (state, { update }) =>
     todosAdapter.updateOne(update, state)
   ),
-  on(TodoActions.loadTodosSuccess, (state, { todos }) =>
-    todosAdapter.setAll(todos, state)
-  ),
-  on(TodoActions.loadNextPageTodosSuccess, (state, { todos }) =>
-    todosAdapter.addMany(todos, state)
-  )
+  // on(TodoActions.loadTodosSuccess, (state, { todos }) =>
+  //   todosAdapter.setAll(todos, state)
+  // ),
+  // on(TodoActions.loadNextPageTodosSuccess, (state, { todos }) =>
+  //   todosAdapter.addMany(todos, state)
+  // )
 );
 
 export const todosReducers: ActionReducerMap<TodoModuleState> = {

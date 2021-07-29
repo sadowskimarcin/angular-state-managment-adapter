@@ -4,24 +4,49 @@ import { TodoState } from './state-ngrx-store/todo.state';
 import { TodoFacadeInterface } from './todo-facade.interface';
 import { TodoService } from './todo.service';
 import * as Selectors from './state-ngrx-store/todo.selectors';
+import * as Actions from './state-ngrx-store/todo.actions';
 
 @Injectable()
 export class TodoFacadeNgrx implements TodoFacadeInterface {
-  todosCompleted$ = this.store.select(Selectors.selectTodosCompleted);
-  todosNotCompleted$ = this.store.select(Selectors.selectTodosNotCompleted);
+  todosCompleted$ = this.state.pipe(Selectors.selectTodosCompleted);
+  todosNotCompleted$ = this.state.pipe(Selectors.selectTodosNotCompleted);
 
-  constructor(private store: Store<TodoState>, private service: TodoService) {}
+  constructor(private state: Store<TodoState>, private service: TodoService) {}
 
-  loadTodos(): void {
-    throw new Error('Method not implemented.');
+  public loadTodos(): void {
+    this.service.getTodos().subscribe(todos => {
+      this.state.dispatch(Actions.setTodos({ todos }));
+    });
   }
-  setTodoIsCompleted(todoId: number, isCompleted: boolean): void {
-    throw new Error('Method not implemented.');
+
+  public setTodoIsCompleted(todoId: number, isCompleted: boolean): void {
+    this.state.dispatch(
+      Actions.updateTodo({
+        update: {
+          id: todoId,
+          changes: {
+            isCompleted
+          }
+        }
+      })
+    );
   }
-  addTodo(title: string): void {
-    throw new Error('Method not implemented.');
+
+  public addTodo(title: string): void {
+    this.service
+      .addTodo({
+        id: null,
+        title,
+        isCompleted: false
+      })
+      .subscribe(todo => {
+        this.state.dispatch(Actions.addTodo({ todo }));
+      });
   }
-  removeTodo(todoId: number): void {
-    throw new Error('Method not implemented.');
+
+  public removeTodo(todoId: number): void {
+    this.service.removeTodo(todoId).subscribe(() => {
+      this.state.dispatch(Actions.deleteTodo({ id: todoId }));
+    });
   }
 }
