@@ -11,6 +11,7 @@ import { TodoFacadeNgrx } from './todo.facade-ngrx';
 import { StoreModule } from '@ngrx/store';
 import { todosReducers } from './state-ngrx-store/todo.reducers';
 import { TODO_FEATURE_KEY } from './state-ngrx-store/todo.state';
+import { TodoFacadeCs } from './todo.facade-cs';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { TODO_FEATURE_KEY } from './state-ngrx-store/todo.state';
   providers: [
     TodoFacadeSm,
     TodoFacadeNgrx,
+    TodoFacadeCs,
     TodoStateAdapter,
     TodoState,
     TodoService

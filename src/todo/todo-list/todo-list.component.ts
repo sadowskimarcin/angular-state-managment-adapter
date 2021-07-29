@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TodoFacadeCs } from '../todo.facade-cs';
 import { TodoFacadeNgrx } from '../todo.facade-ngrx';
 import { TodoFacadeSm } from '../todo.facade-sm';
 
@@ -15,7 +16,8 @@ export class TodoListComponent implements OnInit {
 
   constructor(
     // private facade: TodoFacadeSm,
-    private facade: TodoFacadeNgrx,
+    // private facade: TodoFacadeNgrx,
+    private facade: TodoFacadeCs,
     private formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
