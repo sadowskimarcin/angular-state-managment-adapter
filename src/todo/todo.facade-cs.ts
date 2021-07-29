@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { TodoFacadeInterface } from './todo-facade.interface';
 import { TodoService } from './todo.service';
 import { TodoState } from './state-component-store/todo.state';

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoStateAdapter } from './todo-state.adapter';
-import { TodoState } from './state-manager/todo.state';
+import { TodoState as TodoStateManager } from './state-manager/todo.state';
 import { TodoService } from './todo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { todosReducers } from './state-ngrx-store/todo.reducers';
 import { TODO_FEATURE_KEY } from './state-ngrx-store/todo.state';
 import { TodoFacadeCs } from './todo.facade-cs';
+import { TodoState } from './state-component-store/todo.state';
 
 @NgModule({
   imports: [
@@ -25,8 +26,9 @@ import { TodoFacadeCs } from './todo.facade-cs';
     TodoFacadeSm,
     TodoFacadeNgrx,
     TodoFacadeCs,
-    TodoStateAdapter,
     TodoState,
+    TodoStateAdapter,
+    TodoStateManager,
     TodoService
   ],
   exports: [TodoListComponent]
