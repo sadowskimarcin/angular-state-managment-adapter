@@ -7,18 +7,15 @@ import * as Selectors from './state-ngrx-store/todo.selectors';
 
 @Injectable()
 export class TodoFacadeNgrx implements TodoFacadeInterface {
-  todosCompleted$ = this.store.select(Selectors.completedTodos);
-  todosNotCompleted$ = this.store.select(Selectors.selectTodos);
+  todosCompleted$ = this.store.select(Selectors.selectTodosCompleted);
+  todosNotCompleted$ = this.store.select(Selectors.selectTodosNotCompleted);
 
-  constructor(
-    private store: Store<TodoState>,
-    private service: TodoService
-  ) {}
+  constructor(private store: Store<TodoState>, private service: TodoService) {}
 
   loadTodos(): void {
     throw new Error('Method not implemented.');
   }
-  setTodoIsCompleted(todoId: number,isCompleted: boolean): void {
+  setTodoIsCompleted(todoId: number, isCompleted: boolean): void {
     throw new Error('Method not implemented.');
   }
   addTodo(title: string): void {

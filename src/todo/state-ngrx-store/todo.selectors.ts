@@ -24,12 +24,6 @@ export const selectAllTodos = createSelector(
   todosAdapter.getSelectors().selectAll
 );
 
-
-
-export const selectTodosCompleted = createSelector(
-  getTodoState,
-  todosAdapter.getSelectors().selectAll
-);
 export const selectTodosCompleted = pipe(
   select(getAllTodos),
   map(todos => todos.filter(todo => todo.isCompleted))
