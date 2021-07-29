@@ -4,7 +4,7 @@ import { TodoService } from './todo.service';
 import { TodoState } from './state-component-store/todo.state';
 
 @Injectable()
-export class TodoFacadeCs implements TodoFacadeInterface {
+export class TodoFacadeComponentStore implements TodoFacadeInterface {
   todosCompleted$ = this.state.todosCompleted$;
   todosNotCompleted$ = this.state.todosNotCompleted$;
 
@@ -34,7 +34,7 @@ export class TodoFacadeCs implements TodoFacadeInterface {
 
   public removeTodo(todoId: number): void {
     this.service.removeTodo(todoId).subscribe(() => {
-      this.removeTodo(todoId);
+      this.state.removeTodo(todoId);
     });
   }
 }

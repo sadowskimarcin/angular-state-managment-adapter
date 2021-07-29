@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { TodoStateAdapter } from './todo-state.adapter';
 import * as Actions from './state-manager/todo.actions';
 import * as Selectors from './state-manager/todo.selectors';
 import { TodoService } from './todo.service';
@@ -7,18 +6,13 @@ import { TodoFacadeInterface } from './todo-facade.interface';
 import { TodoState } from './state-manager/todo.state';
 
 @Injectable()
-export class TodoFacadeSm implements TodoFacadeInterface {
-  public todosCompleted$ = this.state.select(
-    Selectors.selectTodosCompleted()
-  );
+export class TodoFacadeStateManager implements TodoFacadeInterface {
+  public todosCompleted$ = this.state.select(Selectors.selectTodosCompleted());
   public todosNotCompleted$ = this.state.select(
     Selectors.selectTodosNotCompleted()
   );
 
-  constructor(
-    private state: TodoState,
-    private service: TodoService
-  ) {}
+  constructor(private state: TodoState, private service: TodoService) {}
 
   public loadTodos(): void {
     this.service.getTodos().subscribe(todos => {
